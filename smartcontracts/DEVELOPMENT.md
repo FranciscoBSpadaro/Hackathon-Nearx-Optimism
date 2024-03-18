@@ -116,8 +116,11 @@ test script deploy mainet  :
 
 forge script script/Deploy.s.sol:DeployScript --rpc-url https://mainnet.optimism.io  --private-key <your_private_key>
 
+- usando anvil sem docker basta abrir o terminal gitbash e digitar : anvil
 
 - iniciar front end
  npx create-react-app web3-app
  npx create-react-app web3-app --template typescript
+
+
  
