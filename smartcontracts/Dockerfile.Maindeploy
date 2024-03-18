@@ -1,7 +1,0 @@
-FROM ghcr.io/foundry-rs/foundry
-
-WORKDIR /develop
-COPY . .
-
-RUN forge b --skip test
-CMD ["forge script script/Deploy.s.sol:DeployScript -f http://anvil:8545 --broadcast"]

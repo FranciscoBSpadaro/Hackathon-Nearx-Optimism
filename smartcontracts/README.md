@@ -28,10 +28,11 @@ docker build -t foundry -f Dockerfile.anvil .
 docker run -p 8545:8545 foundry
 
 
--- Utilizando o docker compose
-
+- Utilizando o docker compose
+- criei 2 docker compose 1 para testes e outro para deploy do projeto final
+- 
 para executar o docker-compose.yml
-
+na raiz do projeto digitar :
 - docker-compose up
 
 ou Se você quiser executar os serviços em segundo plano, pode adicionar a opção -d ao comando
@@ -39,7 +40,16 @@ ou Se você quiser executar os serviços em segundo plano, pode adicionar a opç
 docker-compose up -d  
 
 
+Usando o docker compose de teste o terminal devera exibir o contrato sendo implementado no anvil e o script de mint ser executado
+
+após gerar o docker compose versao final o docker ira criar imagens cada uma com uma tag difirente
+para executar usar comandos abaixo :
+
 - docker run -p 8545:8545 hackathon-nearx-optimism-anvil
+- docker run -p 8545:8545 hackathon-nearx-optimism-deploy
+- docker run -p 3000:3000 hackathon-nearx-optimism-frontend
+- docker run -p 8545:8545 hackathon-nearx-optimism-deploy-test
+- docker run -p 8545:8545 hackathon-nearx-optimism-test
 
 
 comandos do foundry para o ambiente desenvolvimento :

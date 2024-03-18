@@ -1,0 +1,7 @@
+FROM ghcr.io/foundry-rs/foundry
+
+WORKDIR /develop
+COPY . .
+
+RUN forge b --skip test
+CMD ["forge script script/Ayahuasca.s.sol:AyahuascaScript -f http://anvil:8545 --broadcast"]

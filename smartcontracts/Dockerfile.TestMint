@@ -4,4 +4,4 @@ WORKDIR /develop
 COPY . .
 
 RUN forge b --skip test
-CMD ["forge script script/AyahuascaMint.s.sol:AyahuascaMintScript -f http://anvil:8545 --broadcast"]
+CMD ["forge script script/AyahuascaMint.s.sol:AyahuascaMintScript -f http://anvil:8545 --broadcast --sig "run(address)" 0x70997970C51812dc3A010C7d01b50e0d17dc79C8"]
