@@ -1,4 +1,3 @@
-![8](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/6695da5f-4b9d-4fcb-9043-5fa776e165ef)### Nearx Hackaton
 ## Nome Equipe - Optimistic-Shaman
 - membros : FranciscoBS89
 ## Ayahuasca NFT
