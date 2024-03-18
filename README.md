@@ -1,4 +1,4 @@
-### Nearx Hackaton
+![8](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/6695da5f-4b9d-4fcb-9043-5fa776e165ef)### Nearx Hackaton
 ## Nome Equipe - Optimistic-Shaman
 - membros : FranciscoBS89
 ## Ayahuasca NFT
@@ -11,3 +11,5 @@ Loja para venda de NFT Ayahuasca $Yahu
 - no topo da pagina deve exibir a wallet conectada  , e um menu para exibir os nfts adquiridos pelo usuario.
 - Deploy do contrato. ao Realizar o Deploy na rede optmism deve ser definido o endereço da carteira do admin , e o endereço do contrato 
 - quando um nft é vendido os tokens optmism deve ser enviado para a carteira do dono do contrato
+- Prévia de NFT :
+![8](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/8eff1a52-afdf-4366-a812-d393923615d9)
