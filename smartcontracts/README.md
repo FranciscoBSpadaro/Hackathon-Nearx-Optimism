@@ -1,5 +1,5 @@
 
-Instruções de desenvolvimento
+Instruções de Desenvolvimento
 
  ### Configurar docker
 - Para configurar o Docker, você precisa seguir as etapas abaixo:
