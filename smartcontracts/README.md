@@ -144,6 +144,12 @@ forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://12
 
 
 -------------------------
+GERAR ABI
+
+forge build --silent
+
+
+-----
 
 test script deploy mainet  : 
 
@@ -154,7 +160,21 @@ forge script script/Deploy.s.sol:DeployScript --rpc-url https://mainnet.optimism
 - iniciar front end
 - cd frontend
  npx create-react-app frontend
+ ou
  npx create-react-app frontend --template typescript
+ npm start
+
+
+ - crie arquivo .env na pasta smartcontracts
+PRIVATE_KEY=0x...
+RPC_PROVIDER=https://kovan.optimism.io
+
+# Deploy the contract to the L2 network
+# mainet https://mainnet.optimism.io
+# testnet https://kovan.optimism.io
+
+- crie arquivo .env na pasta frontend
+- REACT_APP_CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
 
 
  
