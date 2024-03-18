@@ -1,6 +1,6 @@
 source .env
 
-forge script scripts/deploy.mainnet.s.sol:Polygon \
-    --private-key $POLYGON_PRIVATE_KEY \
-    --rpc-url $POLYGON_RPC_URL \
+forge script scripts/deploy.mainnet.s.sol:Optimism \
+    --private-key $OPTIMISM_PRIVATE_KEY \
+    --rpc-url $OPTIMISM_RPC_URL \
     --broadcast

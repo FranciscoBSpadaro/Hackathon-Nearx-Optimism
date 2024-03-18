@@ -1,6 +1,6 @@
 source .env
 
-forge script scripts/deploy.testnet.s.sol:Mumbai \
-    --private-key $MUMBAI_PRIVATE_KEY \
-    --rpc-url $MUMBAI_RPC_URL \
+forge script scripts/deploy.testnet.s.sol:Optimism \
+    --private-key $OPTIMISM_TESTNET_PRIVATE_KEY \
+    --rpc-url $OPTIMISM_TESTNET_RPC_URL \
     --broadcast
