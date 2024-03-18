@@ -1,0 +1,8 @@
+# Dockerfile.forge
+FROM ghcr.io/foundry-rs/foundry
+
+ENTRYPOINT [ "forge" ]
+
+# docker build -t forge -f Dockerfile.forge .
+# docker run -it forge build
+# docker run -it forge test

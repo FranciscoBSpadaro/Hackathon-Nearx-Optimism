@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@web3-react/core": "^8.2.3"
+  }
+}
