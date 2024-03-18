@@ -1,7 +1,7 @@
 
+Instruções de desenvolvimento
 
----
-Configurar docker
+ ### Configurar docker
 - Para configurar o Docker, você precisa seguir as etapas abaixo:
 
 - Instalação do Docker: Primeiro, você precisa instalar o Docker no seu sistema. Você pode baixar o Docker Desktop do site oficial do Docker. Siga as instruções de instalação para o seu sistema operacional específico.
@@ -22,12 +22,15 @@ instalando foundry no docker :
 docker pull ghcr.io/foundry-rs/foundry:latest
 
 abrir terminal onde está o arquivo dockerfile.anvil
+cd smartcontracts
 
 docker build -t foundry -f Dockerfile.anvil .
 docker run -p 8545:8545 foundry
 
+
 --
 
+comandos do foundry para o ambiente desenvolvimento :
 
 ## Foundry
 
@@ -102,15 +105,17 @@ caso apresenta aviso de erro de  compilador na versao do solididy , clicar no er
 
 
 
-com o anvil rodando pelo docker " requisito hackaton "   abrir um terminal gitbash para testar os scripts.
+com o anvil rodando pelo docker " requisito hackaton "   abrir um outro terminal  para testar os scripts.
+
 executar script de test deploy anvil:
+cd smartcontracts
 forge script script/Ayahuasca.s.sol:AyahuascaScript --rpc-url "http://127.0.0.1:8545" --broadcast
 
-teste mint :
-forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://127.0.0.1:8545" --broadcast 
-ou
-forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://127.0.0.1:8545" --broadcast --sig "run()"
+teste mint pelo anvil :
+forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://127.0.0.1:8545" --broadcast --sig "run(address)" 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 
+
+-------------------------
 
 test script deploy mainet  : 
 
@@ -119,8 +124,9 @@ forge script script/Deploy.s.sol:DeployScript --rpc-url https://mainnet.optimism
 - usando anvil sem docker basta abrir o terminal gitbash e digitar : anvil
 
 - iniciar front end
- npx create-react-app web3-app
- npx create-react-app web3-app --template typescript
+- cd frontend
+ npx create-react-app frontend
+ npx create-react-app frontend --template typescript
 
 
  
