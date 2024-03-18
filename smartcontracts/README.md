@@ -28,7 +28,19 @@ docker build -t foundry -f Dockerfile.anvil .
 docker run -p 8545:8545 foundry
 
 
---
+-- Utilizando o docker compose
+
+para executar o docker-compose.yml
+
+- docker-compose up
+
+ou Se você quiser executar os serviços em segundo plano, pode adicionar a opção -d ao comando
+
+docker-compose up -d  
+
+
+- docker run -p 8545:8545 hackathon-nearx-optimism-anvil
+
 
 comandos do foundry para o ambiente desenvolvimento :
 
@@ -107,11 +119,17 @@ caso apresenta aviso de erro de  compilador na versao do solididy , clicar no er
 
 com o anvil rodando pelo docker " requisito hackaton "   abrir um outro terminal  para testar os scripts.
 
-executar script de test deploy anvil:
+obs: esses script por enquanto so roda no anvil sem o docker compose , pois o docker compose nao está definido esses scripts de teste
+
+executar script de test deploy no anvil:
+
+docker run -p 8545:8545 foundry
+
 cd smartcontracts
 forge script script/Ayahuasca.s.sol:AyahuascaScript --rpc-url "http://127.0.0.1:8545" --broadcast
 
 teste mint pelo anvil :
+
 forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://127.0.0.1:8545" --broadcast --sig "run(address)" 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 
 
