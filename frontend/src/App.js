@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
-import { Web3Provider } from '@ethersproject/providers';
-import { parseEther } from '@ethersproject/units';
+import { formatBytes32String } from '@ethersproject/strings';
+import { JsonRpcProvider } from '@ethersproject/providers';
+// import { Web3Provider } from '@ethersproject/providers';
 import './App.css';
 
 function App() {
@@ -10,7 +11,13 @@ function App() {
   useEffect(() => {
     async function loadContract() {
       // Defina o provedor para se conectar à rede Ethereum
-      const provider = new Web3Provider(window.ethereum);
+      // const provider = new Web3Provider(window.ethereum);
+
+      // URL do RPC da sua rede de teste do Anvil
+      const anvilRpcUrl = 'http://127.0.0.1:8545';
+
+      // Crie um provedor de Ethereum usando o URL do RPC
+      const provider = new JsonRpcProvider(anvilRpcUrl);
 
       // Defina o endereço do contrato Ayahuasca
       const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS
@@ -20,9 +27,9 @@ function App() {
         {
           "type": "constructor",
           "inputs": [
-            {"name": "initialOwner", "type": "address", "internalType": "address"},
-            {"name": "_nftSupply", "type": "uint256", "internalType": "uint256"},
-            {"name": "_nftUrls", "type": "string[]", "internalType": "string[]"}
+            { "name": "initialOwner", "type": "address", "internalType": "address" },
+            { "name": "_nftSupply", "type": "uint256", "internalType": "uint256" },
+            { "name": "_nftUrls", "type": "string[]", "internalType": "string[]" }
           ],
           "stateMutability": "nonpayable"
         },
@@ -30,44 +37,62 @@ function App() {
           "type": "function",
           "name": "COMMON_MAX_SUPPLY",
           "inputs": [],
-          "outputs": [{"name": "", "type": "uint256", "internalType": "uint256"}],
+          "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
           "stateMutability": "view"
         },
         {
           "type": "function",
           "name": "COMMON_PRICE",
           "inputs": [],
-          "outputs": [{"name": "", "type": "uint256", "internalType": "uint256"}],
+          "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
           "stateMutability": "view"
         },
         {
           "type": "function",
           "name": "EPIC_MAX_SUPPLY",
           "inputs": [],
-          "outputs": [{"name": "", "type": "uint256", "internalType": "uint256"}],
+          "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
           "stateMutability": "view"
         },
         {
           "type": "function",
           "name": "RARE_MAX_SUPPLY",
           "inputs": [],
-          "outputs": [{"name": "", "type": "uint256", "internalType": "uint256"}],
+          "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
           "stateMutability": "view"
         },
         {
-          "type": "function",
-          "name": "safeMint",
+          "constant": false,
           "inputs": [
-            {"name": "to", "type": "address", "internalType": "address"},
-            {"name": "tokenId", "type": "uint256", "internalType": "uint256"}
-            // ... adicione mais entradas se a função safeMint tiver mais parâmetros
+            {
+              "name": "_to",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "_tokenURI",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "nftType",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
           ],
-          "outputs": [], // adicione saídas se a função safeMint retornar algum valor
-          "stateMutability": "nonpayable" // isso pode ser "nonpayable", "view", "pure" ou "payable", dependendo da função
-        },
-        // ... continue adicionando todos os objetos do array ABI aqui
+          "name": "safeMint",
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        }
       ];
-
       // Crie uma nova instância do contrato
       const contractInstance = new ethers.Contract(contractAddress, contractABI, provider);
 
@@ -84,11 +109,11 @@ function App() {
     const toAddress = '0x70997970C51812dc3A010C7d01b50e0d17dc79C8';
 
     // Defina a URI do token e o tipo de NFT
-    const tokenURI = 'QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP1';
+    const tokenURI = formatBytes32String('QmY7Yh4UquoXHLPFo2XbhXk');
     const nftType = 0; // 0 para COMMON, 1 para RARE, 2 para EPIC
 
     // Cunhe o NFT
-    const tx = await contract.safeMint(toAddress, tokenURI, nftType, { value: parseEther('0.0075') });
+    const tx = await contract.safeMint(toAddress, tokenURI, nftType);
 
     // Aguarde a transação ser confirmada
     await tx.wait();
