@@ -137,6 +137,8 @@ docker run -p 8545:8545 foundry
 
 cd smartcontracts
 forge script script/Ayahuasca.s.sol:AyahuascaScript --rpc-url "http://127.0.0.1:8545" --broadcast
+ou
+forge script script/Deploy.s.sol:DeployScript --rpc-url "http://127.0.0.1:8545" --broadcast
 
 teste mint pelo anvil :
 
@@ -145,6 +147,13 @@ forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://12
 
 -------------------------
 GERAR ABI
+existem varias formas de extrarir o abi
+- compilar o codigo no remix , https://remix.ethereum.org/  , compilar o codigo do contrato faz gerar uma pasta artifacts , nessa pasta tem o json com abi , mas mesmo assim fica mais trabalhoso organizar o arquivo.. etc .
+- A MELHOR FORMA :
+- codigo javascript , criei um codigo para isso  ' extractabi,js ' basta abrir a pasta do arquivo e digitar node extractabi.js , vai gerar um arquivo de saida AyahuascaAbi.json
+
+
+outras formas menos recomendadas:
 
 forge build --silent
 o abi fica na pasta out\Ayahuasca.sol\Ayahuasca.json
