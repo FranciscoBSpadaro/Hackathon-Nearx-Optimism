@@ -12,24 +12,19 @@ contract AyahuascaScript is Script {
 
     function run() public {
         // Inicie a transmissão para o Anvil
-        vm.startBroadcast(
-            0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-        ); // private key do anvil
+        vm.startBroadcast(0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80); // private key do anvil
 
         // Define o endereço do proprietário inicial
         address initialOwner = vm.addr(1);
         // Define o fornecimento inicial de NFTs
-        uint256 initialSupply = 170;
+        uint256 nftSupply = 170;
         // Define as URLs iniciais dos NFTs
-        string[] memory initialUrls = new string[](initialSupply);
-        initialUrls[0] = "mY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP1";
-        initialUrls[1] = "mY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP2";
+        string[] memory nftUrls = new string[](nftSupply);
+        nftUrls[0] = "mY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP1";
+        nftUrls[1] = "mY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP2";
+        nftUrls[2] = "mY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP3";
         // Cria uma nova instância do contrato Ayahuasca
-        Ayahuasca instance = new Ayahuasca(
-            initialOwner,
-            initialSupply,
-            initialUrls
-        );
+        Ayahuasca instance = new Ayahuasca(initialOwner, nftSupply, nftUrls);
 
         // Emita o evento com o endereço do contrato
         emit ContractDeployed(address(instance));

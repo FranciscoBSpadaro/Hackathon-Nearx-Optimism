@@ -2,10 +2,12 @@
 pragma solidity ^0.8.20;
 
 import {Script} from "forge-std/Script.sol";
-import { Ayahuasca } from "../src/Ayahuasca.sol";
+import {Ayahuasca} from "../src/Ayahuasca.sol";
 
 contract DeployScript is Script {
-    function run() public {
+    event ContractDeployed(address indexed instance);
+
+    function run(address initialOwner) public {
         // Definir o suply de NFTs e as URLs dos NFTs
         uint256 nftSupply = 170;
         string[] memory nftUrls = new string[](31);
@@ -40,12 +42,13 @@ contract DeployScript is Script {
         nftUrls[28] = "EPIC-https://ipfs.io/ipfs/QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa94pxnxjQuPG";
         nftUrls[29] = "EPIC-https://ipfs.io/ipfs/QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa94pxnxjQuPC";
         nftUrls[30] = "EPIC-https://ipfs.io/ipfs/QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa94pxnxjQuPX";
+        // Cria uma nova instância do contrato Ayahuasca
+        Ayahuasca instance = new Ayahuasca(initialOwner, nftSupply, nftUrls);
 
-        // Implantar o contrato
-        new Ayahuasca(msg.sender , nftSupply, nftUrls);
+        // Emitir um evento para indicar que o contrato foi implantado
+        emit ContractDeployed(address(instance));
     }
 }
 
-
-// forge script script/Deploy.s.sol:DeployScript --rpc-url "http://127.0.0.1:8545" --broadcast
+// forge script script/Deploy.s.sol:DeployScript --rpc-url "http://127.0.0.1:8545" --broadcast --sig "run(address)" 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 // forge script script/Deploy.s.sol:DeployScript --rpc-url https://mainnet.optimism.io  --private-key <your_private_key>
