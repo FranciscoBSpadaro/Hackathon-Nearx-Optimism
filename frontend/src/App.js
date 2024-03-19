@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import contractABI from './abis/AyahuascaAbi.json';
 
@@ -18,7 +18,7 @@ async function connectWallet() {
 }
 
 function App() {
-  const [contract, setContract] = useState(null);
+  const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
 
   useEffect(() => {
     async function loadContract() {
@@ -38,57 +38,46 @@ function App() {
       // Crie um novo signer
       const signer = provider.getSigner();
 
-      // Defina o endereço do contrato Ayahuasca
-      const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
-
-      // Defina a ABI do contrato Ayahuasca
-
-
       // Crie uma nova instância do contrato
-      const contractInstance = new ethers.Contract(contractAddress, contractABI, signer);
-
-      setContract(contractInstance);
+      new ethers.Contract(contractAddress, contractABI, signer);
     }
 
     loadContract();
-  }, []);
+  }, [contractAddress]);
 
-  async function mintNFT() {
-    const account = await connectWallet();
-    if (!account) return;
-
-    if (!contract) return;
-
-    // Defina o endereço para o qual o NFT será cunhado
-    const toAddress = account; // Use o endereço da conta conectada
-
-    // Defina a URI do o tipo de NFT
-    const tokenURI = 'mY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP1';
-    const nftType = 0; // 0 para COMMON, 1 para RARE, 2 para EPIC
-
+  async function mintNFT(nftType) {
+    const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+  
+    const contract = new ethers.Contract(contractAddress, contractABI, signer);
+  
     // Defina o preço com base no tipo de NFT
     let price;
     if (nftType === 0) {
-      price = ethers.utils.parseUnits('0.0075', 'ether').toString();
+      price = ethers.utils.parseUnits('0.0075', 'ether');
     } else if (nftType === 1) {
-      price = ethers.utils.parseUnits('0.015', 'ether').toString();
+      price = ethers.utils.parseUnits('0.015', 'ether');
     } else if (nftType === 2) {
-      price = ethers.utils.parseUnits('0.03', 'ether').toString();
+      price = ethers.utils.parseUnits('0.03', 'ether');
     }
 
-    // Cunhe o NFT com um limite de gás manual
-    const gasLimit = ethers.utils.hexlify(2000000); // 2,000,000 de gás
-    const tx = await contract.safeMint(toAddress, tokenURI, nftType, { value: price, gasLimit: gasLimit });
-
-    // Aguarde a transação ser confirmada
+    // nft mint
+    const tx = await contract.safeMint(account, 'mY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP1', '0', {
+      value: price
+    });
+  
+    console.log(`Transação enviada: ${tx.hash}`);
     await tx.wait();
-
-    console.log('NFT minted!');
+    console.log(`Transação concluída: ${tx.hash}`);
   }
 
   return (
     <div className="App">
-      <button onClick={mintNFT}>Mint NFT</button>
+      <button onClick={() => mintNFT(0)}>Mint NFT Type 0</button>
+      <button onClick={() => mintNFT(1)}>Mint NFT Type 1</button>
+      <button onClick={() => mintNFT(2)}>Mint NFT Type 2</button>
     </div>
   );
 }
