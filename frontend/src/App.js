@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
-import { formatBytes32String } from '@ethersproject/strings';
+import React, { useEffect, useState } from 'react';
+// import { formatBytes32String } from '@ethersproject/strings';
 import { JsonRpcProvider } from '@ethersproject/providers';
 // import { Web3Provider } from '@ethersproject/providers';
 import './App.css';
@@ -104,20 +104,20 @@ function App() {
 
   async function mintNFT() {
     if (!contract) return;
-
+  
     // Defina o endereço para o qual o NFT será cunhado
     const toAddress = '0x70997970C51812dc3A010C7d01b50e0d17dc79C8';
-
-    // Defina a URI do token e o tipo de NFT
-    const tokenURI = formatBytes32String('QmY7Yh4UquoXHLPFo2XbhXk');
+  
+    // Defina a URI do o tipo de NFT
+    const tokenURI = 'QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP1';
     const nftType = 0; // 0 para COMMON, 1 para RARE, 2 para EPIC
-
+  
     // Cunhe o NFT
-    const tx = await contract.safeMint(toAddress, tokenURI, nftType);
-
+    const tx = await contract.safeMint(toAddress, tokenURI, nftType, { value: ethers.utils.parseUnits('0.0075', 'ether').toString() });
+  
     // Aguarde a transação ser confirmada
     await tx.wait();
-
+  
     console.log('NFT minted!');
   }
 
