@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import React, { useEffect, useState } from 'react';
 // import { formatBytes32String } from '@ethersproject/strings';
-import { JsonRpcProvider } from '@ethersproject/providers';
+//import { JsonRpcProvider } from '@ethersproject/providers';
 // import { Web3Provider } from '@ethersproject/providers';
 import './App.css';
 
@@ -10,19 +10,25 @@ function App() {
 
   useEffect(() => {
     async function loadContract() {
-      // Defina o provedor para se conectar à rede Ethereum
-      // const provider = new Web3Provider(window.ethereum);
+      // Verifique se o MetaMask está instalado
+      if (!window.ethereum) {
+        console.error("Por favor, instale o MetaMask!");
+        return;
+      }
 
-      // URL do RPC da sua rede de teste do Anvil
-      const anvilRpcUrl = 'http://127.0.0.1:8545';
+      // Crie um novo provider usando o MetaMask
+  // const provider = new ethers.providers.Web3Provider(window.ethereum);
+      // Crie um novo provider usando um URL RPC personalizado
+      const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_RPC_URL);
 
-      // Crie um provedor de Ethereum usando o URL do RPC
-      const provider = new JsonRpcProvider(anvilRpcUrl);
+      // Solicite ao usuário para conectar à sua carteira
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+
       // Crie um novo signer
       const signer = provider.getSigner();
 
       // Defina o endereço do contrato Ayahuasca
-      const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS
+      const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
 
       // Defina a ABI do contrato Ayahuasca
       const contractABI = [
@@ -90,13 +96,14 @@ function App() {
               "internalType": "uint256"
             }
           ],
-          "payable": false,
-          "stateMutability": "nonpayable",
+          "payable": true, // Alterado de false para true
+          "stateMutability": "payable", // Alterado de nonpayable para payable
           "type": "function"
         }
+        // ... outros elementos da ABI ...
       ];
       // Crie uma nova instância do contrato
-      const contractInstance = new ethers.Contract(contractAddress, contractABI, provider, signer);
+      const contractInstance = new ethers.Contract(contractAddress, contractABI, signer);
 
       setContract(contractInstance);
     }

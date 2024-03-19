@@ -147,6 +147,11 @@ forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://12
 GERAR ABI
 
 forge build --silent
+o abi fica na pasta out\Ayahuasca.sol\Ayahuasca.json
+
+
+esse seria um metodo usando ' jq ' 
+forge build --silent && jq '.abi' ./out/Ayahuasca.sol/Ayahuasca.json
 
 
 -----
@@ -175,6 +180,7 @@ RPC_PROVIDER=https://kovan.optimism.io
 
 - crie arquivo .env na pasta frontend
 - REACT_APP_CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
+- REACT_APP_RPC_URL=http://127.0.0.1:8545
 
 
  
