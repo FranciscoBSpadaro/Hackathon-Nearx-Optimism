@@ -191,5 +191,9 @@ RPC_PROVIDER=https://kovan.optimism.io
 - REACT_APP_CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
 - REACT_APP_RPC_URL=http://127.0.0.1:8545
 
+pasta artifacts
+Para gerar a pasta de artefatos usando o Foundry, você precisa executar o comando de compilação. No terminal, você pode fazer isso com o seguinte comando:
+
+
 
  

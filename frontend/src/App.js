@@ -49,52 +49,44 @@ function App() {
     try {
       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
       console.log(`Account: ${account}`);
-       // usando metamask
+      // usando metamask
       const provider = new ethers.providers.Web3Provider(window.ethereum);
+      // sem metamask
       //const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_RPC_URL);
       const signer = provider.getSigner();
-  
+
       const Ayahuasca = new ethers.Contract(contractAddress, contractABI, signer);
 
-    // Defina o preço com base no tipo de NFT
-    let price;
-    let uri;
+      // Defina o preço com base no tipo de NFT
+      let price;
+      if (nftType === 'COMMON') {
+        price = ethers.utils.parseEther('0.0075');
+        nftType = 0;
+      } else if (nftType === 'RARE') {
+        price = ethers.utils.parseEther('0.015');
+        nftType = 1;
+      } else if (nftType === 'EPIC') {
+        price = ethers.utils.parseEther('0.03');
+        nftType = 2;
+      }
 
-    const NftType = {
-      COMMON: 0,
-      RARE: 1,
-      EPIC: 2
-    };
+      const transaction = await Ayahuasca.mintNft(nftType, { value: price });
+      //console.log(`Minting NFT account=${account}, uri=${uri}, nftType=${nftType}, price=${price}`);
+      await transaction.wait();
 
-    if (nftType === NftType.COMMON) {
-      price = ethers.utils.parseUnits('0.0075', 'ether');
-      uri = "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP1";
-    } else if (nftType === NftType.RARE) {
-      price = ethers.utils.parseUnits('0.015', 'ether');
-      uri = "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa93pxnxjQuP2";
-    } else if (nftType === NftType.EPIC) {
-      price = ethers.utils.parseUnits('0.03', 'ether');
-      uri = "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa94pxnxjQuP3";
+      console.log(`Minted NFT of type: ${nftType}`);
+      console.log(`Transaction completed: ${transaction.hash}`);
+    } catch (error) {
+      console.error(`Failed to mint NFT: ${error}`);
+      console.error(`Error: ${JSON.stringify(error)}`);
     }
-
-    console.log(`Minting NFT account=${account}, uri=${uri}, nftType=${nftType}, price=${price}`);
-
-    const tx = await Ayahuasca.safeMint(account, uri, nftType, {
-      value: price
-    });
-    console.log(`Transaction sent: ${tx.hash}`);
-    await tx.wait();
-    console.log(`Transaction completed: ${tx.hash}`);
-  } catch (error) {
-    console.error(`Error: ${JSON.stringify(error)}`);
   }
-}
 
   return (
     <div className="App">
-      <button onClick={() => mintNFT(0)}>Mint NFT Type 0</button>
-      <button onClick={() => mintNFT(1)}>Mint NFT Type 1</button>
-      <button onClick={() => mintNFT(2)}>Mint NFT Type 2</button>
+      <button onClick={() => mintNFT('COMMON')}>Mint NFT Type COMMON</button>
+      <button onClick={() => mintNFT('RARE')}>Mint NFT Type RARE</button>
+      <button onClick={() => mintNFT('EPIC')}>Mint NFT Type EPIC</button>
     </div>
   );
 }
