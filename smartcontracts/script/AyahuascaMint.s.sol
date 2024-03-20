@@ -26,8 +26,10 @@ contract AyahuascaMintScript is Script {
         vm.stopBroadcast();
     }
 }
-
+// vm.stopBroadcast(); 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d , para testar mint com usuario normal
 // Neste comando de teste , 0x5fbdb2315678afecb367f032d93f642f64180aa3 é o endereço do contrato Ayahuasca e 0 é o tipo de NFT que você deseja mint (0 para COMMON, 1 para RARE, 2 para EPIC). 0.0075 é o valor do nft comum
 // comum - forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://127.0.0.1:8545" --broadcast --sig "run(address,uint256,uint256)" 0x5fbdb2315678afecb367f032d93f642f64180aa3 0 7500000000000000
 // raro -  forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://127.0.0.1:8545" --broadcast --sig "run(address,uint256,uint256)" 0x5fbdb2315678afecb367f032d93f642f64180aa3 1 15000000000000000
 // epico - forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://127.0.0.1:8545" --broadcast --sig "run(address,uint256,uint256)" 0x5fbdb2315678afecb367f032d93f642f64180aa3 2 30000000000000000
+// teste com o owner do contrato - alterar chave privada para a do owner , exemplo : 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 , owner deve mintar sem cobrar eth.
+// owner - forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://127.0.0.1:8545" --broadcast --sig "run(address,uint256,uint256)" 0x5fbdb2315678afecb367f032d93f642f64180aa3 0 0

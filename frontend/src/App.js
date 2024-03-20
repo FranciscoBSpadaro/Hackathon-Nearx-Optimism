@@ -1,7 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import './App.css';
+import Header from './Header';
+import MyNFTs from './MyNFTs';
+import Transactions from './Transactions';
+import NFTCard from './NFTCard';
 import contractABI from './abis/AyahuascaAbi.json';
+
+// Import images
+import common1 from './assets/comun/common1.png';
+import common2 from './assets/comun/common2.png';
+import common3 from './assets/comun/common3.png';
+import rare1 from './assets/raro/rare1.png';
+import rare2 from './assets/raro/rare2.png';
+import rare3 from './assets/raro/rare3.png';
+import epic1 from './assets/epico/epic1.mp4';
+import epic2 from './assets/epico/epic2.mp4';
+import epic3 from './assets/epico/epic3.mp4';
 
 const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
 
@@ -9,14 +24,18 @@ function App() {
   const [walletAddress, setWalletAddress] = useState('');
   const [connectedToOptimism, setConnectedToOptimism] = useState(false);
 
-  async function connectWallet() {
-    try {
-      const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      setWalletAddress(account);
-    } catch (error) {
-      console.error(`Failed to connect wallet: ${error}`);
+  const connectWallet = async () => {
+    if (window.ethereum) {
+      try {
+        const [address] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        setWalletAddress(address);
+      } catch (error) {
+        console.error("Falha ao conectar a carteira", error);
+      }
+    } else {
+      alert("Por favor, instale MetaMask!");
     }
-  }
+  };
 
   async function connectToOptimism() {
     try {
@@ -44,9 +63,9 @@ function App() {
     try {
       await connectWallet();
       // com metamask
-      //const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
       // sem metamask
-      const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_RPC_URL);
+      //const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_RPC_URL);
       const signer = provider.getSigner();
 
       const Ayahuasca = new ethers.Contract(contractAddress, contractABI, signer);
@@ -100,15 +119,22 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={connectWallet}>
-        Conectar Carteira {walletAddress ? `(${walletAddress.slice(0, 5)}...)` : ''}
-      </button>
-      <button onClick={connectToOptimism} disabled={connectedToOptimism}>
-        {connectedToOptimism ? 'Conectado à Rede Optimism' : 'Conectar à Rede Optimism'}
-      </button>
-      <button onClick={() => mintNFT('COMMON')}>Mint NFT Type COMMON</button>
-      <button onClick={() => mintNFT('RARE')}>Mint NFT Type RARE</button>
-      <button onClick={() => mintNFT('EPIC')}>Mint NFT Type EPIC</button>
+      <Header connectWallet={connectWallet} connectToOptimism={connectToOptimism} connectedToOptimism={connectedToOptimism} walletAddress={walletAddress} />
+      <MyNFTs />
+      <Transactions />
+      <h2>Ayahuasca NFT</h2>
+      <p>Selecione o tipo de NFT que deseja mintar:</p>
+      <p>NFT Type COMMON: 0.0075 ETH</p>
+      <p>NFT Type RARE: 0.015 ETH</p>
+      <p>NFT Type EPIC: 0.03 ETH</p>
+      <div className="cards-container">
+        <NFTCard type="COMMON" mintNFT={mintNFT} images={[common1, common2, common3]} />
+        <NFTCard type="RARE" mintNFT={mintNFT} images={[rare1, rare2, rare3]} />
+        <NFTCard type="EPIC" mintNFT={mintNFT} images={[epic1, epic2, epic3]} />
+      </div>
+      <p>Participe do sorteio de airdrop de 1 nft comum </p>
+      <p>Projeto Realizado para o Hackaton Nearx</p>
+      <p>Desenvolvido por: <a href="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">FBS-DEV- Equipe Optimismtic Shaman</a></p>
     </div>
   );
 }
