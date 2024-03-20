@@ -123,7 +123,7 @@ function App() {
       <Header connectWallet={connectWallet} connectToOptimism={connectToOptimism} connectedToOptimism={connectedToOptimism} walletAddress={walletAddress} />
       <MyNFTs />
       <Transactions />
-      <h2>Ayahuasca NFT</h2>
+      <h1>Ayahuasca NFT</h1>
       <p>Selecione o tipo de NFT que deseja mintar:</p>
       <p>NFT Type COMMON: 0.0075 ETH</p>
       <p>NFT Type RARE: 0.015 ETH</p>
@@ -133,9 +133,15 @@ function App() {
         <NFTCard type="RARE" mintNFT={mintNFT} images={[rare1, rare2, rare3]} />
         <NFTCard type="EPIC" mintNFT={mintNFT} images={[epic1, epic2, epic3]} />
       </div>
-      <p>Participe do sorteio de airdrop de 1 nft comum </p>
-      <p>Projeto Realizado para o Hackaton Nearx</p>
-      <p>Desenvolvido por: <a href="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">FBS-DEV- Equipe Optimismtic Shaman</a></p>
+      <p>Total Supply 170 NFTs</p>
+      <p>100 NFTs Common</p>
+      <p>50 NFTs Rare</p>
+      <p>20 NFTs Epic</p>
+      <br></br>
+      <p>Airdrop de até 10 Nfts Comum para 10 participantes de sorteio </p>
+      <p>Participe do Sorteio de NFTs Comum : <a href="https://...">Formulario de Sorteio</a></p>
+      <p>Projeto Realizado para o <a href="https://nearx.notion.site/Hackathon-Optimism-NearX-21124cc4067042cc95bc1c2434322faf">Hackaton Nearx</a></p>
+      <p>Desenvolvido por: <a href="https://github.com/FranciscoBSpadaro">FBS-DEV- Equipe Optimismtic Shaman</a></p>
       </div>
     </div>
   );
