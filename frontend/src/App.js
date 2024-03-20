@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import './App.css';
 import contractABI from './abis/AyahuascaAbi.json';
-
 
 const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
 
 function App() {
   const [walletAddress, setWalletAddress] = useState('');
+  const [connectedToOptimism, setConnectedToOptimism] = useState(false);
 
   async function connectWallet() {
     try {
@@ -15,6 +15,28 @@ function App() {
       setWalletAddress(account);
     } catch (error) {
       console.error(`Failed to connect wallet: ${error}`);
+    }
+  }
+
+  async function connectToOptimism() {
+    try {
+      await window.ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [{
+          chainId: '0xA', // Chain ID 10 for Optimism Mainnet
+          chainName: 'Optimism Mainnet',
+          nativeCurrency: {
+            name: 'Ether',
+            symbol: 'ETH',
+            decimals: 18
+          },
+          rpcUrls: ['https://mainnet.optimism.io'],
+          blockExplorerUrls: ['https://optimistic.etherscan.io']
+        }]
+      });
+      setConnectedToOptimism(true);
+    } catch (error) {
+      console.error(`Failed to connect to Optimism: ${error}`);
     }
   }
 
@@ -52,10 +74,37 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    if (window.ethereum) {
+      window.ethereum.on('chainChanged', () => {
+        setConnectedToOptimism(false);
+      });
+
+      window.ethereum.on('accountsChanged', () => {
+        setConnectedToOptimism(false);
+      });
+    }
+
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.removeListener('chainChanged', () => {
+          setConnectedToOptimism(false);
+        });
+
+        window.ethereum.removeListener('accountsChanged', () => {
+          setConnectedToOptimism(false);
+        });
+      }
+    };
+  }, []);
+
   return (
     <div className="App">
       <button onClick={connectWallet}>
-        Conectar Carteira {walletAddress ? `(${walletAddress.slice(0, 7)}...)` : ''}
+        Conectar Carteira {walletAddress ? `(${walletAddress.slice(0, 5)}...)` : ''}
+      </button>
+      <button onClick={connectToOptimism} disabled={connectedToOptimism}>
+        {connectedToOptimism ? 'Conectado à Rede Optimism' : 'Conectar à Rede Optimism'}
       </button>
       <button onClick={() => mintNFT('COMMON')}>Mint NFT Type COMMON</button>
       <button onClick={() => mintNFT('RARE')}>Mint NFT Type RARE</button>
