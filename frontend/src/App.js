@@ -118,6 +118,7 @@ function App() {
   }, []);
 
   return (
+    <div className="App background-image">
     <div className="App">
       <Header connectWallet={connectWallet} connectToOptimism={connectToOptimism} connectedToOptimism={connectedToOptimism} walletAddress={walletAddress} />
       <MyNFTs />
@@ -135,6 +136,7 @@ function App() {
       <p>Participe do sorteio de airdrop de 1 nft comum </p>
       <p>Projeto Realizado para o Hackaton Nearx</p>
       <p>Desenvolvido por: <a href="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">FBS-DEV- Equipe Optimismtic Shaman</a></p>
+      </div>
     </div>
   );
 }

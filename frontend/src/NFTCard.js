@@ -6,7 +6,7 @@ function NFTCard({ type, mintNFT, images }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((currentImage + 1) % images.length);
-    }, 4500);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [currentImage, images]);
@@ -20,7 +20,7 @@ function NFTCard({ type, mintNFT, images }) {
       ) : (
         <img src={images[currentImage]} alt={type} />
       )}
-      <button onClick={() => mintNFT(type)}>Mint NFT Type {type}</button>
+      <button onClick={() => mintNFT(type)}>Random Mint NFT {type}</button>
     </div>
   );
 }

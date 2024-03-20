@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .button-link {
   display: inline-block;
   margin: 0.5em;
@@ -39,4 +41,22 @@
 .card img, .card video {
   width: 100%;
   height: auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('./assets/background/wall1.png'), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+
+h1, h2, p {
+  color: white;
+  font-family: 'Roboto', sans-serif;
 }
