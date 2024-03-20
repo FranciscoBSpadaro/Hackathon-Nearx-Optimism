@@ -1,63 +1,34 @@
+import React, { useState } from 'react';
 import { ethers } from 'ethers';
-import React, { useEffect } from 'react';
 import './App.css';
 import contractABI from './abis/AyahuascaAbi.json';
 
-async function connectWallet() {
-  if (window.ethereum) {
-    try {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      const account = accounts[0];
-      return account;
-    } catch (error) {
-      console.error("Usuário recusou a conexão com a carteira");
-    }
-  } else {
-    console.log("Metamask não está instalado. Por favor, instale o Metamask e tente novamente");
-  }
-}
+
+const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
 
 function App() {
-  const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
+  const [walletAddress, setWalletAddress] = useState('');
 
-  useEffect(() => {
-    async function loadContract() {
-      // Verifique se o MetaMask está instalado
-      if (!window.ethereum) {
-        console.error("Por favor, instale o MetaMask!");
-        return;
-      }
-
-      // Solicite ao usuário para conectar à sua carteira
-      const account = await connectWallet();
-      if (!account) return;
-
-      // Crie um novo provider usando um URL RPC personalizado
-      const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_RPC_URL);
-
-      // Crie um novo signer
-      const signer = provider.getSigner();
-
-      // Crie uma nova instância do contrato
-      new ethers.Contract(contractAddress, contractABI, signer);
+  async function connectWallet() {
+    try {
+      const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      setWalletAddress(account);
+    } catch (error) {
+      console.error(`Failed to connect wallet: ${error}`);
     }
-
-    loadContract();
-  }, [contractAddress]);
+  }
 
   async function mintNFT(nftType) {
     try {
-      const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      console.log(`Account: ${account}`);
-      // usando metamask
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      await connectWallet();
+      // com metamask
+      //const provider = new ethers.providers.Web3Provider(window.ethereum);
       // sem metamask
-      //const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_RPC_URL);
+      const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_RPC_URL);
       const signer = provider.getSigner();
 
       const Ayahuasca = new ethers.Contract(contractAddress, contractABI, signer);
 
-      // Defina o preço com base no tipo de NFT
       let price;
       if (nftType === 'COMMON') {
         price = ethers.utils.parseEther('0.0075');
@@ -77,13 +48,15 @@ function App() {
       console.log(`Minted NFT of type: ${nftType}`);
       console.log(`Transaction completed: ${transaction.hash}`);
     } catch (error) {
-      console.error(`Failed to mint NFT: ${error}`);
-      console.error(`Error: ${JSON.stringify(error)}`);
+      console.log(`Failed to mint NFT: ${error.reason}`);
     }
   }
 
   return (
     <div className="App">
+      <button onClick={connectWallet}>
+        Conectar Carteira {walletAddress ? `(${walletAddress.slice(0, 7)}...)` : ''}
+      </button>
       <button onClick={() => mintNFT('COMMON')}>Mint NFT Type COMMON</button>
       <button onClick={() => mintNFT('RARE')}>Mint NFT Type RARE</button>
       <button onClick={() => mintNFT('EPIC')}>Mint NFT Type EPIC</button>
