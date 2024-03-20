@@ -50,8 +50,8 @@ function App() {
       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
       console.log(`Account: ${account}`);
        // usando metamask
-      // const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_RPC_URL);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      //const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_RPC_URL);
       const signer = provider.getSigner();
   
       const Ayahuasca = new ethers.Contract(contractAddress, contractABI, signer);
