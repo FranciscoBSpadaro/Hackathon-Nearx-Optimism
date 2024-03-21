@@ -4,7 +4,6 @@ import { ethers } from 'ethers';
 import './App.css';
 import Header from './Header';
 import MyNFTs from './MyNFTs';
-
 import NFTCard from './NFTCard';
 import contractABI from './abis/AyahuascaAbi.json';
 

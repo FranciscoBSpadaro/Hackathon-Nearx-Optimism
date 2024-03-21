@@ -5,7 +5,6 @@ function Header({ connectWallet, connectToOptimism, connectedToOptimism, walletA
     <div className="header">
       <div className="center-links">
         <a href="/mynfts" className="button-link">Meus NFTs</a>
-
       </div>
       <div className="wallet-buttons">
         <button className="button-link" onClick={connectWallet}>
