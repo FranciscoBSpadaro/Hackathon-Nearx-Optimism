@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function NFTCard({ type, mintNFT, images }) {
+function NFTCard({ type, mintNFT, images, nftCount }) {
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
@@ -21,6 +21,7 @@ function NFTCard({ type, mintNFT, images }) {
         <img src={images[currentImage]} alt={type} />
       )}
       <button onClick={() => mintNFT(type)}>Random Mint NFT {type}</button>
+      <p>{nftCount} NFT {type} Already Minted</p>
     </div>
   );
 }
