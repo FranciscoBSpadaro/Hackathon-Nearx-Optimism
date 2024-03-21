@@ -14,6 +14,11 @@ Pagina e Contrato de Mint de  NFT Ayahuasca $Yahu
    - RARE_PRICE = 0.015 ether;
    - EPIC_PRICE = 0.03 ether;
 -  Será possivel Receber Airdrop de nft comuns atraves de tarefas como compartilhar em redes sociais
+-  Tecnologias Utilizadas:
+   - Frontend: Javascript, (React.js)
+   - SmartContracts: Solidity
+   - Framework Foundry
+
 
 - Prévia de NFT :
 ![8](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/8eff1a52-afdf-4366-a812-d393923615d9)

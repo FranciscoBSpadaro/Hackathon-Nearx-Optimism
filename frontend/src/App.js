@@ -167,9 +167,9 @@ function App() {
         </div>
         <br></br>
         <p>Total Supply 170 NFTs</p>
-        <p>100 NFTs Common</p>
-        <p>50 NFTs Rare</p>
-        <p>20 NFTs Epic</p>
+        <p>100 NFTs Common  - With 20 Random NFT Images</p>
+        <p>50 NFTs Rare - With 10 Random NFT Images </p>
+        <p>20 NFTs Epic - With 10  Random NFT Animated Images </p>
         <br></br>
         <p>Airdrop de até 10 Nfts Comum para 10 participantes de sorteio </p>
         <p>Participe do Sorteio de NFTs Comum : <a href="https://...">Formulario de Sorteio</a></p>
