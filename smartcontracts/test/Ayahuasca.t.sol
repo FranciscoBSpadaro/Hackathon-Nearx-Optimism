@@ -94,6 +94,25 @@ contract AyahuascaTest is Test {
         string memory url = ayahuasca.getEpicUrl(0); // Obtém a URL do primeiro NFT épico
         assertEq(url, "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa94pxnxjQuPd"); // Verifica se a URL obtida é a esperada
     }
+    // Testa a função tokensOfOwner , função necessária para o front end exibir nfts do usuario
+
+    function testTokensOfOwner() public {
+        // Cunha alguns NFTs para o endereço deste contrato
+        ayahuasca.mintNft{value: ayahuasca.COMMON_PRICE()}(Ayahuasca.NftType.COMMON);
+        ayahuasca.mintNft{value: ayahuasca.RARE_PRICE()}(Ayahuasca.NftType.RARE);
+        ayahuasca.mintNft{value: ayahuasca.EPIC_PRICE()}(Ayahuasca.NftType.EPIC);
+
+        // Obtém os IDs de token do endereço deste contrato
+        uint256[] memory tokenIds = ayahuasca.tokensOfOwner(address(this));
+
+        // Verifica se o número correto de IDs de token foi retornado
+        assertEq(tokenIds.length, 3);
+
+        // Verifica se os IDs de token corretos foram retornados
+        for (uint256 i = 0; i < tokenIds.length; i++) {
+            assertEq(tokenIds[i], i + 1);
+        }
+    }
 }
 
 // forge t  - executar o teste

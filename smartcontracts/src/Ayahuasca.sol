@@ -39,6 +39,8 @@ contract Ayahuasca is ERC721, ERC721URIStorage, Ownable {
     // Mapeamentos para armazenar URLs e contagens de cada tipo de NFT
     mapping(NftType => string[]) public nftUrls;
     mapping(NftType => uint256) public nftCounts;
+    // Mapeamento de proprietário para lista de IDs de token
+    mapping(address => uint256[]) private _ownerTokens;
 
     // Construtor para inicializar o contrato com o fornecimento total de NFTs e URLs para cada tipo de NFT
     constructor(
@@ -76,6 +78,7 @@ contract Ayahuasca is ERC721, ERC721URIStorage, Ownable {
         _tokenIdCounter.increment();
         uint256 newTokenId = _tokenIdCounter.current();
         _mint(msg.sender, newTokenId);
+        _ownerTokens[msg.sender].push(newTokenId);
         _setTokenURI(newTokenId, url);
 
         // Incrementando a contagem para o tipo de NFT
@@ -93,6 +96,11 @@ contract Ayahuasca is ERC721, ERC721URIStorage, Ownable {
             }
             require(msg.value == price, "Ether value sent is not correct");
         }
+    }
+    // Função para obter os IDs de token de um proprietário
+
+    function tokensOfOwner(address owner) external view returns (uint256[] memory) {
+        return _ownerTokens[owner];
     }
 
     // Função para retornar a URI base
