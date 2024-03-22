@@ -21,8 +21,9 @@ Pagina e Contrato de Mint de  NFT Ayahuasca $Yahu
    - SmartContracts: Solidity
    - Framework Foundry
 
-- Modelagem
-  ![MODELAGEm](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/22ec285d-0a3d-48e7-9ce7-ecc04e49274f)
+- Modelagem do use case
+  ![MODELAGEm](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/f3a9151b-931d-48e8-8a74-a1a7ea672c07)
+
 
 
 
