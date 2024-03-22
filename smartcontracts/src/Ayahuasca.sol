@@ -38,7 +38,10 @@ contract Ayahuasca is ERC721, ERC721URIStorage, Ownable {
 
     // Mapeamentos para armazenar URLs e contagens de cada tipo de NFT
     mapping(NftType => string[]) public nftUrls;
+    // Mapeamento de contagem para cada tipo de NFT Url
     mapping(NftType => uint256) public nftCounts;
+    // Mapeamento de ID de token para tipo de NFT
+    mapping(uint256 => NftType) private _tokenTypes;
     // Mapeamento de proprietário para lista de IDs de token
     mapping(address => uint256[]) private _ownerTokens;
 
@@ -70,15 +73,20 @@ contract Ayahuasca is ERC721, ERC721URIStorage, Ownable {
             require(nftCounts[nftType] < EPIC_MAX_SUPPLY, "Max supply for EPIC NFTs reached");
         }
 
-        // Selecionando uma URL aleatória
+        // Selecionando uma URL aleatória para cada nft mintado por tipo de nft
         string memory url = nftUrls[nftType][uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender)))
             % nftUrls[nftType].length];
 
         // Incrementando o contador de IDs de token e cunhando o novo NFT
         _tokenIdCounter.increment();
+        // Mint o novo NFT
         uint256 newTokenId = _tokenIdCounter.current();
         _mint(msg.sender, newTokenId);
+        // Adicionando o ID de token à lista de tokens do proprietário
         _ownerTokens[msg.sender].push(newTokenId);
+        // Armazenando o tipo do NFT
+        _tokenTypes[newTokenId] = nftType;
+        // Definindo a URI do token
         _setTokenURI(newTokenId, url);
 
         // Incrementando a contagem para o tipo de NFT
@@ -136,23 +144,13 @@ contract Ayahuasca is ERC721, ERC721URIStorage, Ownable {
         return EPIC_PRICE;
     }
 
-    // Função para obter uma URL comum
-    function getCommonUrl(uint256 index) public view returns (string memory) {
-        return nftUrls[NftType.COMMON][index];
-    }
-
-    // Função para obter uma URL rara
-    function getRareUrl(uint256 index) public view returns (string memory) {
-        return nftUrls[NftType.RARE][index];
-    }
-
-    // Função para obter uma URL épica
-    function getEpicUrl(uint256 index) public view returns (string memory) {
-        return nftUrls[NftType.EPIC][index];
-    }
-
     // Função para obter a contagem de um tipo de NFT
     function getNftCount(NftType nftType) public view returns (uint256) {
         return nftCounts[nftType];
+    }
+    // Função para obter o tipo de um NFT
+
+    function getType(uint256 tokenId) public view returns (NftType) {
+        return _tokenTypes[tokenId];
     }
 }

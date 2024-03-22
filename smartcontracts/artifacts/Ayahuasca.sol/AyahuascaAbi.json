@@ -192,25 +192,6 @@
   },
   {
     "type": "function",
-    "name": "getCommonUrl",
-    "inputs": [
-      {
-        "name": "index",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "",
-        "type": "string",
-        "internalType": "string"
-      }
-    ],
-    "stateMutability": "view"
-  },
-  {
-    "type": "function",
     "name": "getEpicPrice",
     "inputs": [],
     "outputs": [
@@ -221,25 +202,6 @@
       }
     ],
     "stateMutability": "pure"
-  },
-  {
-    "type": "function",
-    "name": "getEpicUrl",
-    "inputs": [
-      {
-        "name": "index",
-        "type": "uint256",
-        "internalType": "uint256"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "",
-        "type": "string",
-        "internalType": "string"
-      }
-    ],
-    "stateMutability": "view"
   },
   {
     "type": "function",
@@ -275,10 +237,10 @@
   },
   {
     "type": "function",
-    "name": "getRareUrl",
+    "name": "getType",
     "inputs": [
       {
-        "name": "index",
+        "name": "tokenId",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -286,8 +248,8 @@
     "outputs": [
       {
         "name": "",
-        "type": "string",
-        "internalType": "string"
+        "type": "uint8",
+        "internalType": "enum Ayahuasca.NftType"
       }
     ],
     "stateMutability": "view"

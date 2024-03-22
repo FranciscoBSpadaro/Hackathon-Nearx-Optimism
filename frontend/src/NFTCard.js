@@ -1,3 +1,4 @@
+// Card component to display NFTs and mint in HOME
 import React, { useState, useEffect } from 'react';
 
 function NFTCard({ type, mintNFT, images, nftCount }) {

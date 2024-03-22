@@ -62,38 +62,20 @@ contract AyahuascaTest is Test {
         assertEq(ayahuasca.getNftCount(Ayahuasca.NftType.COMMON), initialCount + 1); // Verifica se a contagem de NFTs comuns aumentou em 1
     }
 
-    // Testa a funcionalidade de obtenção do preço de NFTs comuns
-    function testGetCommonPrice() public {
-        assertEq(ayahuasca.getCommonPrice(), 0.0075 ether); // Verifica se o preço dos NFTs comuns é 0.0075 ether
+    // Testa a funcionalidade de obtenção do preço de cada tipo de NFT
+    function testGetPrices() public {
+        assertEq(ayahuasca.getCommonPrice(), 0.0075 ether); // Verifica se o preço do NFT comum está correto
+        assertEq(ayahuasca.getRarePrice(), 0.015 ether); // Verifica se o preço do NFT raro está correto
+        assertEq(ayahuasca.getEpicPrice(), 0.03 ether); // Verifica se o preço do NFT épico está correto
     }
 
-    // Testa a funcionalidade de obtenção do preço de NFTs raros
-    function testGetRarePrice() public {
-        assertEq(ayahuasca.getRarePrice(), 0.015 ether); // Verifica se o preço dos NFTs raros é 0.015 ether
+    // Testa a funcionalidade de obtenção do tipo de um NFT
+    function testGetType() public {
+        ayahuasca.mintNft{value: ayahuasca.getCommonPrice()}(Ayahuasca.NftType.COMMON); // Cunha um novo NFT comum
+        uint256 tokenId = ayahuasca.getNftCount(Ayahuasca.NftType.COMMON); // Obtém o ID do último NFT cunhado
+        assertEq(uint256(ayahuasca.getType(tokenId)), uint256(Ayahuasca.NftType.COMMON)); // Verifica se o tipo do NFT está correto
     }
 
-    // Testa a funcionalidade de obtenção do preço de NFTs épicos
-    function testGetEpicPrice() public {
-        assertEq(ayahuasca.getEpicPrice(), 0.03 ether); // Verifica se o preço dos NFTs épicos é 0.03 ether
-    }
-
-    // Testa a funcionalidade de obtenção da URL de NFTs comuns
-    function testGetCommonUrl() public {
-        string memory url = ayahuasca.getCommonUrl(0); // Obtém a URL do primeiro NFT comum
-        assertEq(url, "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP1"); // Verifica se a URL obtida é a esperada
-    }
-
-    // Testa a funcionalidade de obtenção da URL de NFTs raros
-    function testGetRareUrl() public {
-        string memory url = ayahuasca.getRareUrl(0); // Obtém a URL do primeiro NFT raro
-        assertEq(url, "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa94pxnxjQuPt"); // Verifica se a URL obtida é a esperada
-    }
-
-    // Testa a funcionalidade de obtenção da URL de NFTs épicos
-    function testGetEpicUrl() public {
-        string memory url = ayahuasca.getEpicUrl(0); // Obtém a URL do primeiro NFT épico
-        assertEq(url, "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa94pxnxjQuPd"); // Verifica se a URL obtida é a esperada
-    }
     // Testa a função tokensOfOwner , função necessária para o front end exibir nfts do usuario
 
     function testTokensOfOwner() public {
