@@ -20,8 +20,13 @@ Pagina e Contrato de Mint de  NFT Ayahuasca $Yahu
    - Frontend: Javascript, (React.js)
    - SmartContracts: Solidity
    - Framework Foundry
-  
-  - Prévia de NFT :
+
+- Modelagem
+  ![MODELAGEm](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/22ec285d-0a3d-48e7-9ce7-ecc04e49274f)
+
+
+
+- Prévia de NFT :
 ![8](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/8eff1a52-afdf-4366-a812-d393923615d9)
 
 - Prévia Página inicial
