@@ -1,5 +1,5 @@
 ## Nome Equipe - Optimistic-Shaman
-- membros : FranciscoBS89
+- Membros : [FranciscoBS89](https://github.com/FranciscoBSpadaro)
 ## Ayahuasca NFT
 Pagina e Contrato de Mint de  NFT Ayahuasca $Yahu
 - Suply Total :  185
