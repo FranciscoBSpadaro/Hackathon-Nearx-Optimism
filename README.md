@@ -28,3 +28,7 @@ Pagina e Contrato de Mint de  NFT Ayahuasca $Yahu
 
 - Prévia de NFT :
 ![8](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/8eff1a52-afdf-4366-a812-d393923615d9)
+
+- Prévia Página inicial
+  ![image](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/97fbc4dc-2092-4d91-a994-b62edadd0a71)
+
