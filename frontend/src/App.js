@@ -176,9 +176,9 @@ function App() {
                 <p>20 NFTs Epic - With 10  Random NFT Animated Images </p>
                 <br></br>
                 <p>Airdrop de até 10 Nfts Comum para 10 participantes de sorteio </p>
-                <p>Participe do Sorteio de NFTs Comum : <a href="https://...">Formulario de Sorteio</a></p>
-                <p>Projeto Realizado para o <a href="https://nearx.notion.site/Hackathon-Optimism-NearX-21124cc4067042cc95bc1c2434322faf">Hackaton Nearx</a></p>
-                <p>Desenvolvido por: <a href="https://github.com/FranciscoBSpadaro">FBS-DEV- Equipe Optimismtic Shaman</a></p>
+                <p>Participe do Sorteio de NFTs Comum : <a href="https://...">Formulario de Sorteio 📝</a></p>
+                <p>Projeto Realizado para o <a href="https://nearx.notion.site/Hackathon-Optimism-NearX-21124cc4067042cc95bc1c2434322faf">Hackaton Nearx ✨</a></p>
+                <p>Desenvolvido por: <a href="https://github.com/FranciscoBSpadaro">FBS-DEV 👨‍💻</a></p>
 
               </>
             } />

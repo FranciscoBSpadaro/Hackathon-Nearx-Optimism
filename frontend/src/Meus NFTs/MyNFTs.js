@@ -39,31 +39,31 @@ function MyNFTs() {
           const provider = new ethers.providers.Web3Provider(window.ethereum);
           const contract = new ethers.Contract(contractAddress, contractABI, provider);
           console.log(`Endereço do contrato : ${nftContract.address}`)
-  
+
           const NftType = {
             0: 'comum',
             1: 'raro',
             2: 'epico'
           };
-  
+
           const tokenIds = await contract.tokensOfOwner(account);
           let tempCommonNfts = [];
           let tempRareNfts = [];
           let tempEpicNfts = [];
           for (let i = 0; i < tokenIds.length; i++) {
-              const tokenURI = await contract.tokenURI(tokenIds[i]);
-              const type = NftType[await contract.getType(tokenIds[i])];
-              const nft = { tokenId: tokenIds[i], tokenURI, type };
-  
-              if (type === 'comum') {
-                tempCommonNfts.push(nft);
-              } else if (type === 'raro') {
-                tempRareNfts.push(nft);
-              } else if (type === 'epico') {
-                tempEpicNfts.push(nft);
-              }
+            const tokenURI = await contract.tokenURI(tokenIds[i]);
+            const type = NftType[await contract.getType(tokenIds[i])];
+            const nft = { tokenId: tokenIds[i], tokenURI, type };
+
+            if (type === 'comum') {
+              tempCommonNfts.push(nft);
+            } else if (type === 'raro') {
+              tempRareNfts.push(nft);
+            } else if (type === 'epico') {
+              tempEpicNfts.push(nft);
+            }
           }
-  
+
           setCommonNfts(tempCommonNfts);
           setRareNfts(tempRareNfts);
           setEpicNfts(tempEpicNfts);
@@ -72,7 +72,7 @@ function MyNFTs() {
         console.error(error);
       }
     }
-  
+
     getNFTs();
   }, [account]);
 
@@ -88,6 +88,8 @@ function MyNFTs() {
     <div>
       {!account ? (
         <p>Você não está conectado. Conecte sua carteira.</p>
+      ) : commonNfts.length === 0 && rareNfts.length === 0 && epicNfts.length === 0 ? (
+        <p>👽 Você Não Tem Ayahuasca NFT 🤯.</p>
       ) : (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
           {commonNfts.length > 0 && (
