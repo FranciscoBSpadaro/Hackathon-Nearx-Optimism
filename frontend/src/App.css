@@ -17,6 +17,22 @@
   background-color: #0056b3;
 }
 
+.button-link1 {
+  display: inline-block;
+  padding: 0.3em 0.5em;
+  text-decoration: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 0.25em;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-link1:hover {
+  background-color: #8dbb58;
+}
+
 .cards-container {
   display: flex;
   justify-content: center;

@@ -11,21 +11,23 @@ contract AyahuascaTest is Test {
     function setUp() public {
         // Definindo URLs para os NFTs
         string[] memory commonUrls = new string[](2);
-        commonUrls[0] = "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP1";
-        commonUrls[1] = "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP2";
+        commonUrls[0] = "common1.png";
+        commonUrls[1] = "common2.png";
         string[] memory rareUrls = new string[](2);
-        rareUrls[0] = "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa94pxnxjQuPt";
-        rareUrls[1] = "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa94pxnxjQuzz";
+        rareUrls[0] = "rare1.png";
+        rareUrls[1] = "rare2.png";
         string[] memory epicUrls = new string[](2);
-        epicUrls[0] = "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa94pxnxjQuPd";
-        epicUrls[1] = "QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa94pxnxjQudd";
+        epicUrls[0] = "epic1.mp4";
+        epicUrls[1] = "epic2.mp4";
         ayahuasca = new Ayahuasca(address(this), 170, commonUrls, rareUrls, epicUrls);
     }
 
     // Testa a configuração inicial do contrato
     function testInitialSetup() public {
         assertEq(ayahuasca.nftSupply(), 170); // Verifica se a oferta inicial de NFTs é 170
-        assertEq(ayahuasca.getBaseURI(), "https://ipfs.io/ipfs/"); // Verifica se a URI base está correta
+        assertEq(
+            ayahuasca.getBaseURI(), "https://bafybeigfuq3bsmiwzfzlqyvv7fmwbn57czafdocdbqzqxrummiwq4v3hlm.ipfs.w3s.link/"
+        ); // Verifica se a URI base está correta
     }
 
     // Testa a funcionalidade de Mint de NFTs
@@ -50,7 +52,8 @@ contract AyahuascaTest is Test {
     function testTokenURI() public {
         ayahuasca.mintNft{value: ayahuasca.COMMON_PRICE()}(Ayahuasca.NftType.COMMON); // Cunha um novo NFT comum
         uint256 tokenId = ayahuasca.getNftCount(Ayahuasca.NftType.COMMON); // Obtém o ID do último NFT cunhado
-        string memory expectedURI = "https://ipfs.io/ipfs/QmY7Yh4UquoXHLPFo2XbhXkhBvFoPwmQUSa92pxnxjQuP2"; // Define a URI esperada
+        string memory expectedURI =
+            "https://bafybeigfuq3bsmiwzfzlqyvv7fmwbn57czafdocdbqzqxrummiwq4v3hlm.ipfs.w3s.link/common2.png"; // Define a URI esperada
         string memory actualURI = ayahuasca.tokenURI(tokenId); // Obtém a URI atual do token
         assertEq(actualURI, expectedURI); // Verifica se a URI atual do token é igual à esperada
     }

@@ -21,7 +21,7 @@ contract Ayahuasca is ERC721, ERC721URIStorage, Ownable {
     // Definindo constantes para o fornecimento máximo e preço de cada tipo de NFT
     uint256 public constant COMMON_MAX_SUPPLY = 100;
     uint256 public constant RARE_MAX_SUPPLY = 50;
-    uint256 public constant EPIC_MAX_SUPPLY = 20;
+    uint256 public constant EPIC_MAX_SUPPLY = 35;
     uint256 public constant COMMON_PRICE = 0.0075 ether;
     uint256 public constant RARE_PRICE = 0.015 ether;
     uint256 public constant EPIC_PRICE = 0.03 ether;
@@ -35,6 +35,8 @@ contract Ayahuasca is ERC721, ERC721URIStorage, Ownable {
 
     // Variável para armazenar o fornecimento total de NFTs
     uint256 public nftSupply;
+    // Variável para armazenar a URI base
+    string private baseURI = "https://bafybeigfuq3bsmiwzfzlqyvv7fmwbn57czafdocdbqzqxrummiwq4v3hlm.ipfs.w3s.link/";
 
     // Mapeamentos para armazenar URLs e contagens de cada tipo de NFT
     mapping(NftType => string[]) public nftUrls;
@@ -112,16 +114,16 @@ contract Ayahuasca is ERC721, ERC721URIStorage, Ownable {
     }
 
     // Função para retornar a URI base
-    function _baseURI() internal pure override returns (string memory) {
-        return "https://ipfs.io/ipfs/";
+    function _baseURI() internal view override returns (string memory) {
+        return baseURI;
     }
-
     // Função para obter a URI base
-    function getBaseURI() public pure returns (string memory) {
-        return _baseURI();
-    }
 
+    function getBaseURI() public view returns (string memory) {
+        return baseURI;
+    }
     // Função para verificar se uma interface é suportada
+
     function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721URIStorage) returns (bool) {
         return super.supportsInterface(interfaceId);
     }

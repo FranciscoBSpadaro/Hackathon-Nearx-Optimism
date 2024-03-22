@@ -21,7 +21,7 @@ function NFTCard({ type, mintNFT, images, nftCount }) {
       ) : (
         <img src={images[currentImage]} alt={type} />
       )}
-      <button onClick={() => mintNFT(type)}>Random Mint NFT {type}</button>
+      <button className='button-link1' onClick={() => mintNFT(type)}>Random Mint NFT {type}</button>
       <p>{nftCount} NFT {type} Already Minted</p>
     </div>
   );

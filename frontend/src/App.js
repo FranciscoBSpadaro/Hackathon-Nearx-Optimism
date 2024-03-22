@@ -164,11 +164,11 @@ function App() {
                   <NFTCard type="EPIC" mintNFT={mintNFT} images={epic} nftCount={epicNFTs} />
                 </div>
                 <br></br>
-                <p>Total Supply 170 NFTs</p>
+                <p>Total Supply 185 NFTs</p>
                 <p>100 NFTs Common  - With 50 Random NFT Images</p>
                 <p>50 NFTs Rare - With 25 Random NFT Images </p>
-                <p>20 NFTs Epic - With 10  Random NFT Animated Images </p>
-                <p>85 NFT Images </p>
+                <p>35 NFTs Epic - With 4 Random NFT Images + 6 Animated Images </p>
+                <p>Total 85 NFT Art </p>
                 <br></br>
                 <p>Airdrop de até 10 Nfts Comum para 10 participantes de sorteio </p>
                 <p>Participe do Sorteio de NFTs Comum : <a href="https://...">Formulario de Sorteio 📝</a></p>
