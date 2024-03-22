@@ -3,8 +3,8 @@
 ## Ayahuasca NFT
 Pagina e Contrato de Mint de  NFT Ayahuasca $Yahu
 - Suply Total :  170
-  - 100 Comun : 20 tipos de nft url  Comum
-  - 50 Raro : 10 tipos de nft url Raro
+  - 100 Comun : 50 tipos de nft url  Comum
+  - 50 Raro : 25 tipos de nft url Raro
   - 20 Epico : 10 tipos de nft url Epico
 - Nft ipfs urls total : 40
 - Mint Randomico , ao comprar um nft comum raro ou epico , o nft tipo de imagen url é aleatorio 

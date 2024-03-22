@@ -8,15 +8,9 @@ import NFTCard from './NFTCard';
 import contractABI from './abis/AyahuascaAbi.json';
 
 // Import images
-import common1 from './assets/comun/common1.png';
-import common2 from './assets/comun/common2.png';
-import common3 from './assets/comun/common3.png';
-import rare1 from './assets/raro/rare1.png';
-import rare2 from './assets/raro/rare2.png';
-import rare3 from './assets/raro/rare3.png';
-import epic1 from './assets/epico/epic1.mp4';
-import epic2 from './assets/epico/epic2.mp4';
-import epic3 from './assets/epico/epic3.mp4';
+import common from './assets/comun';
+import rare from './assets/raro';
+import epic from './assets/epico';
 
 const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
 
@@ -165,15 +159,16 @@ function App() {
                 <p>NFT Type RARE: 0.015 ETH</p>
                 <p>NFT Type EPIC: 0.03 ETH</p>
                 <div className="cards-container">
-                  <NFTCard type="COMMON" mintNFT={mintNFT} images={[common1, common2, common3]} nftCount={commonNFTs} />
-                  <NFTCard type="RARE" mintNFT={mintNFT} images={[rare1, rare2, rare3]} nftCount={rareNFTs} />
-                  <NFTCard type="EPIC" mintNFT={mintNFT} images={[epic1, epic2, epic3]} nftCount={epicNFTs} />
+                  <NFTCard type="COMMON" mintNFT={mintNFT} images={common} nftCount={commonNFTs} />
+                  <NFTCard type="RARE" mintNFT={mintNFT} images={rare} nftCount={rareNFTs} />
+                  <NFTCard type="EPIC" mintNFT={mintNFT} images={epic} nftCount={epicNFTs} />
                 </div>
                 <br></br>
                 <p>Total Supply 170 NFTs</p>
-                <p>100 NFTs Common  - With 20 Random NFT Images</p>
-                <p>50 NFTs Rare - With 10 Random NFT Images </p>
+                <p>100 NFTs Common  - With 50 Random NFT Images</p>
+                <p>50 NFTs Rare - With 25 Random NFT Images </p>
                 <p>20 NFTs Epic - With 10  Random NFT Animated Images </p>
+                <p>85 NFT Images </p>
                 <br></br>
                 <p>Airdrop de até 10 Nfts Comum para 10 participantes de sorteio </p>
                 <p>Participe do Sorteio de NFTs Comum : <a href="https://...">Formulario de Sorteio 📝</a></p>

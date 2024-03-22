@@ -12,7 +12,7 @@ function NFTCard({ type, mintNFT, images, nftCount }) {
     return () => clearInterval(interval);
   }, [currentImage, images]);
 
-  const isVideo = images[currentImage].endsWith('.mp4');
+  const isVideo = images[currentImage] && images[currentImage].endsWith('.mp4');
 
   return (
     <div className="card">
