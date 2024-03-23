@@ -76,5 +76,11 @@ A função getType retorna o tipo de um NFT específico ,  útil para o front en
 ![MODELAGEm](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/7db12ccc-33c0-4406-a3d2-7f5febb1d8fb)
 
 
+Observações :
+Existem outros readme com explicações de como executar scripts e os scripts tem comentarios .
+
+pendente testes de deploy na testnet da optimism , até o presente momento tive dificuldades com a rede sepolia op , talvez algum problema com o meu script de deploy , o script executa sem erro mas minha wallet na sepolia op nao tem registro de transações...
+
+
 
 

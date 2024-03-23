@@ -147,6 +147,7 @@ forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://12
 
 -------------------------
 GERAR ABI
+Abi é necessario para o front end e toda mudança no codigo do contrato precisa atualizar o ABI
 existem varias formas de extrarir o abi
 - executar : Forge compile
 - codigo javascript , criei um codigo para isso  ' extractabi,js ' basta abrir a pasta do arquivo e digitar node extractabi.js , vai gerar um arquivo de saida AyahuascaAbi.json
