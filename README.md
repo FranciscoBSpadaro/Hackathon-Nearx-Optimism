@@ -73,7 +73,8 @@ A função getType retorna o tipo de um NFT específico ,  útil para o front en
 
 
 - Modelagem:
-- ![MODELAGEm](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/22ec285d-0a3d-48e7-9ce7-ecc04e49274f)
+![MODELAGEm](https://github.com/FranciscoBSpadaro/Hackathon-Nearx-Optimism/assets/69543568/7db12ccc-33c0-4406-a3d2-7f5febb1d8fb)
+
 
 
 
