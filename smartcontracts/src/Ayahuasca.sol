@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: GNU
 pragma solidity ^0.8.20;
 
 // Importando as bibliotecas necessárias

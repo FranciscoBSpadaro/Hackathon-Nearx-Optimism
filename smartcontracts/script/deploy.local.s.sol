@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: GNU
 pragma solidity ^0.8.20;
 
 import "forge-std/Script.sol";
@@ -11,7 +11,6 @@ contract DeployScript is Script {
 
     function run(address initialOwner) public {
         require(initialOwner != address(0), "Initial owner cannot be zero address");
-
         vm.startBroadcast(0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80); // private key do anvil
         // Definir o suply de NFTs e as URLs dos NFTs
         uint256 nftSupply = 170;
