@@ -14,7 +14,7 @@ const contractAbi = contractJson.abi;
 const abiJson = JSON.stringify(contractAbi, null, 2);
 
 // Caminho para o novo arquivo JSON
-const abiPath = path.resolve(__dirname, './AyahuascaAbi.json');
+const abiPath = path.resolve(__dirname, './Ayahuasca.json');
 
 // Escrever a string JSON no novo arquivo
 fs.writeFileSync(abiPath, abiJson);
