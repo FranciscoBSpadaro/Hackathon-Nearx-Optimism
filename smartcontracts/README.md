@@ -149,14 +149,14 @@ forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://12
 GERAR ABI
 Abi é necessario para o front end e toda mudança no codigo do contrato precisa atualizar o ABI
 existem varias formas de extrair o abi
-- executar : Forge compile
-- codigo javascript , criei um codigo para isso  ' extractabi,js ' basta abrir a pasta do arquivo e digitar node extractabi.js , vai gerar um arquivo de saida AyahuascaAbi.json
-- compilar o codigo no remix , https://remix.ethereum.org/  , compilar o codigo do contrato faz gerar uma pasta artifacts , nessa pasta tem o json com abi , mas mesmo assim fica mais trabalhoso organizar o arquivo.. etc .
+
+- codigo javascript , criei um codigo para isso  ' extractabi,js ' basta abrir a pasta do arquivo e digitar node extractabi.js , vai gerar um arquivo de saida Ayahuasca.json
 
 Outras formas...
-
-forge build --silent
-o abi fica na pasta out\Ayahuasca.sol\Ayahuasca.json
+- executar : Forge compile
+- compilar o codigo no remix , https://remix.ethereum.org/  , compilar o codigo do contrato faz gerar uma pasta artifacts , nessa pasta tem o json com abi , mas mesmo assim fica mais trabalhoso organizar o arquivo.. etc .
+- forge build --silent
+- o abi fica na pasta out\Ayahuasca.sol\Ayahuasca.json
 
 
 esse seria um metodo usando ' jq ' 
