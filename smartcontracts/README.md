@@ -148,7 +148,7 @@ forge script script/AyahuascaMint.s.sol:AyahuascaMintScript --rpc-url "http://12
 -------------------------
 GERAR ABI
 Abi é necessario para o front end e toda mudança no codigo do contrato precisa atualizar o ABI
-existem varias formas de extrarir o abi
+existem varias formas de extrair o abi
 - executar : Forge compile
 - codigo javascript , criei um codigo para isso  ' extractabi,js ' basta abrir a pasta do arquivo e digitar node extractabi.js , vai gerar um arquivo de saida AyahuascaAbi.json
 - compilar o codigo no remix , https://remix.ethereum.org/  , compilar o codigo do contrato faz gerar uma pasta artifacts , nessa pasta tem o json com abi , mas mesmo assim fica mais trabalhoso organizar o arquivo.. etc .
@@ -190,14 +190,6 @@ OPTIMISM_PRIVATE_KEY=
 OPTIMISM_RPC_URL=https://mainnet.optimism.io
 
 
-- iniciar front end
-- cd frontend
- npx create-react-app frontend
- ou
- npx create-react-app frontend --template typescript
- npm start
-
-
 configurar metamask para usar o anvil
 para evitar bugs de erro de rpc no metamask utilizar http://localhost:8545
 Nome da rede : Localhost 8545
@@ -206,23 +198,5 @@ ID da cadeia : 31337
 Símbolo da moeda : GO
 
 
-- crie arquivo .env na pasta frontend
-- REACT_APP_CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
-- REACT_APP_RPC_URL=http://127.0.0.1:8545
-
-
 
 ---------
-Deploy
-
-Tutorial
-
-https://docs.optimism.io/builders/app-developers/quick-start#step-3-deploy-contracts-to-superchain-testnets
-
-copiar os contratos e scripts para o Scaffold-OP
-
-
-
-https://www.alchemy.com/faucets/ethereum-goerli
-
- 
