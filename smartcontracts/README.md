@@ -181,11 +181,12 @@ ou executar...
 
 
  - crie arquivo .env na pasta smartcontracts
- - variaveis :
-#TestNet 
+ - 
+Defina as variaveis de ambiente , crie o .env
+
 OPTIMISM_TESTNET_PRIVATE_KEY=
 OPTIMISM_TESTNET_RPC_URL=https://sepolia.optimism.io
-#Mainnet
+
 OPTIMISM_PRIVATE_KEY=
 OPTIMISM_RPC_URL=https://mainnet.optimism.io
 
