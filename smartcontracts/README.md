@@ -184,20 +184,11 @@ ou executar...
  - 
 Defina as variaveis de ambiente , crie o .env
 
+```env
 OPTIMISM_TESTNET_PRIVATE_KEY=
 OPTIMISM_TESTNET_RPC_URL=https://sepolia.optimism.io
 
 OPTIMISM_PRIVATE_KEY=
 OPTIMISM_RPC_URL=https://mainnet.optimism.io
 
-
-configurar metamask para usar o anvil
-para evitar bugs de erro de rpc no metamask utilizar http://localhost:8545
-Nome da rede : Localhost 8545
-Novo URL da RPC : http://localhost:8545
-ID da cadeia : 31337
-Símbolo da moeda : GO
-
-
-
----------
+```
